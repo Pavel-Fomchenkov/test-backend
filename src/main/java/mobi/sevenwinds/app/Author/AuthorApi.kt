@@ -1,13 +1,11 @@
 package mobi.sevenwinds.app.Author
 
-import com.papsign.ktor.openapigen.annotations.parameters.QueryParam
 import com.papsign.ktor.openapigen.route.info
 import com.papsign.ktor.openapigen.route.path.normal.NormalOpenAPIRoute
 import com.papsign.ktor.openapigen.route.path.normal.get
 import com.papsign.ktor.openapigen.route.path.normal.post
 import com.papsign.ktor.openapigen.route.response.respond
 import com.papsign.ktor.openapigen.route.route
-import mobi.sevenwinds.app.budget.BudgetService
 import java.time.LocalDateTime
 
 fun NormalOpenAPIRoute.author() {
