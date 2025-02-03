@@ -1,4 +1,4 @@
-package mobi.sevenwinds.app.Author
+package mobi.sevenwinds.app.author
 
 import com.papsign.ktor.openapigen.route.info
 import com.papsign.ktor.openapigen.route.path.normal.NormalOpenAPIRoute

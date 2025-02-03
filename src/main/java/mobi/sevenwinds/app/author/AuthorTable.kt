@@ -1,4 +1,4 @@
-package mobi.sevenwinds.app.Author
+package mobi.sevenwinds.app.author
 
 import org.jetbrains.exposed.dao.EntityID
 import org.jetbrains.exposed.dao.IntEntity

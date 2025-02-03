@@ -1,4 +1,4 @@
-package mobi.sevenwinds.app.Author
+package mobi.sevenwinds.app.author
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
