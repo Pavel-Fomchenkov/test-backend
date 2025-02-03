@@ -1,0 +1,1 @@
+ALTER TABLE author RENAME COLUMN creationDate TO entryDate;

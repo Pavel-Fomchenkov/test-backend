@@ -21,21 +21,21 @@ class BudgetApiKtTest : ServerTest() {
     fun testBudgetPagination() {
         addRecord(BudgetRecord(2020, 5, 10, BudgetType.Приход))
         addRecord(BudgetRecord(2020, 5, 5, BudgetType.Приход))
-        addRecord(BudgetRecord(2020, 5, 20, BudgetType.Приход))
+        addRecord(BudgetRecord(2020, 5, 20, BudgetType.Расход))
         addRecord(BudgetRecord(2020, 5, 30, BudgetType.Приход))
         addRecord(BudgetRecord(2020, 5, 40, BudgetType.Приход))
         addRecord(BudgetRecord(2030, 1, 1, BudgetType.Расход))
 
         RestAssured.given()
-            .queryParam("limit", 3)
+            .queryParam("limit", 4)
             .queryParam("offset", 1)
             .get("/budget/year/2020/stats")
             .toResponse<BudgetYearStatsResponse>().let { response ->
                 println("${response.total} / ${response.items} / ${response.totalByType}")
 
-                Assert.assertEquals(5, response.total)
-                Assert.assertEquals(3, response.items.size)
-                Assert.assertEquals(105, response.totalByType[BudgetType.Приход.name])
+                Assert.assertEquals(4, response.total)
+                Assert.assertEquals(4, response.items.size)
+                Assert.assertEquals(75, response.totalByType[BudgetType.Приход.name])
             }
     }
 
