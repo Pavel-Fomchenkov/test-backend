@@ -1,4 +1,4 @@
-package mobi.sevenwinds.app.Author
+package mobi.sevenwinds.app.author
 
 import org.jetbrains.exposed.dao.EntityID
 import org.jetbrains.exposed.dao.IntEntity
@@ -17,6 +17,6 @@ class AuthorEntity(id: EntityID<Int>) : IntEntity(id) {
     var entryDate by AuthorTable.entryDate
 
     fun toResponse(): AuthorRecord {
-        return AuthorRecord(name, entryDate.toString("dd.MM.yyyy HH:mm:ss"))
+        return AuthorRecord(id.value, name, entryDate.toString("dd.MM.yyyy HH:mm:ss"))
     }
 }

@@ -43,7 +43,8 @@ dependencies {
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.8") // needed for multipart parsing
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.8") // needed for Optional<> parsing
     implementation("org.webjars:swagger-ui:3.25.0")
-    implementation("org.reflections:reflections:0.9.11") // only used while initializing
+//    implementation("org.reflections:reflections:0.9.11") // only used while initializing
+    implementation("org.reflections:reflections:0.10.2")
 
     implementation("at.favre.lib:bcrypt:0.9.0")
 
