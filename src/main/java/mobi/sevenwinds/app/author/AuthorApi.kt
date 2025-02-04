@@ -25,6 +25,7 @@ data class AuthorName(
 )
 
 data class AuthorRecord(
+    val id: Int,
     val name: String,
     val entryDate: String
 )
