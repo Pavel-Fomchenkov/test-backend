@@ -13,6 +13,7 @@ object BudgetService {
                 this.month = body.month
                 this.amount = body.amount
                 this.type = body.type
+                this.authorId = body.authorId
             }
 
             return@transaction entity.toResponse()
