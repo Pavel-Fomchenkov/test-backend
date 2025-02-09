@@ -19,12 +19,12 @@ class BudgetApiKtTest : ServerTest() {
 
     @Test
     fun testBudgetPagination() {
-        addRecord(BudgetRecord(2020, 5, 10, BudgetType.Приход, null))
-        addRecord(BudgetRecord(2020, 5, 5, BudgetType.Приход, null))
-        addRecord(BudgetRecord(2020, 5, 20, BudgetType.Расход, null))
-        addRecord(BudgetRecord(2020, 5, 30, BudgetType.Приход, null))
-        addRecord(BudgetRecord(2020, 5, 40, BudgetType.Приход, null))
-        addRecord(BudgetRecord(2030, 1, 1, BudgetType.Расход, null))
+        addRecord(BudgetRecord(2020, 5, 10, BudgetType.Приход))
+        addRecord(BudgetRecord(2020, 5, 5, BudgetType.Приход))
+        addRecord(BudgetRecord(2020, 5, 20, BudgetType.Расход))
+        addRecord(BudgetRecord(2020, 5, 30, BudgetType.Приход))
+        addRecord(BudgetRecord(2020, 5, 40, BudgetType.Приход))
+        addRecord(BudgetRecord(2030, 1, 1, BudgetType.Расход))
 
         RestAssured.given()
             .queryParam("limit", 4)
@@ -41,11 +41,11 @@ class BudgetApiKtTest : ServerTest() {
 
     @Test
     fun testStatsSortOrder() {
-        addRecord(BudgetRecord(2020, 5, 100, BudgetType.Приход, null))
-        addRecord(BudgetRecord(2020, 1, 5, BudgetType.Приход, null))
-        addRecord(BudgetRecord(2020, 5, 50, BudgetType.Приход, null))
-        addRecord(BudgetRecord(2020, 1, 30, BudgetType.Приход, null))
-        addRecord(BudgetRecord(2020, 5, 400, BudgetType.Приход, null))
+        addRecord(BudgetRecord(2020, 5, 100, BudgetType.Приход))
+        addRecord(BudgetRecord(2020, 1, 5, BudgetType.Приход))
+        addRecord(BudgetRecord(2020, 5, 50, BudgetType.Приход))
+        addRecord(BudgetRecord(2020, 1, 30, BudgetType.Приход))
+        addRecord(BudgetRecord(2020, 5, 400, BudgetType.Приход))
 
         // expected sort order - month ascending, amount descending
 
@@ -65,12 +65,12 @@ class BudgetApiKtTest : ServerTest() {
     @Test
     fun testInvalidMonthValues() {
         RestAssured.given()
-            .jsonBody(BudgetRecord(2020, -5, 5, BudgetType.Приход, null))
+            .jsonBody(BudgetRecord(2020, -5, 5, BudgetType.Приход))
             .post("/budget/add")
             .then().statusCode(400)
 
         RestAssured.given()
-            .jsonBody(BudgetRecord(2020, 15, 5, BudgetType.Приход, null))
+            .jsonBody(BudgetRecord(2020, 15, 5, BudgetType.Приход))
             .post("/budget/add")
             .then().statusCode(400)
     }
