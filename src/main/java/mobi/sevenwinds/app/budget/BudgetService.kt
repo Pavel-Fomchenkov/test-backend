@@ -2,18 +2,20 @@ package mobi.sevenwinds.app.budget
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import mobi.sevenwinds.app.author.AuthorTable
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
 
 object BudgetService {
     suspend fun addRecord(body: BudgetRecord): BudgetRecord = withContext(Dispatchers.IO) {
         transaction {
+            val authorExists = AuthorTable.select { AuthorTable.id eq body.authorId }.count() > 0
             val entity = BudgetEntity.new {
                 this.year = body.year
                 this.month = body.month
                 this.amount = body.amount
                 this.type = body.type
-                this.authorId = body.authorId
+                this.authorId = if (authorExists) body.authorId else null
             }
 
             return@transaction entity.toResponse()
