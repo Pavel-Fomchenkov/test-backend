@@ -21,7 +21,7 @@ fun NormalOpenAPIRoute.author() {
 }
 
 data class AuthorName(
-    val name: String,
+    val name: String
 )
 
 data class AuthorRecord(
