@@ -36,6 +36,7 @@ data class BudgetRecord(
 
 data class BudgetYearParam(
     @PathParam("Год") val year: Int,
+    @QueryParam("Имя") val name: String?,
     @QueryParam("Лимит пагинации") val limit: Int,
     @QueryParam("Смещение пагинации") val offset: Int,
 )
@@ -47,9 +48,9 @@ class BudgetYearStatsResponse(
 )
 
 data class BudgetStatsRecord(
-    @Min(1900) val year: Int,
-    @Min(1) @Max(12) val month: Int,
-    @Min(1) val amount: Int,
+    val year: Int,
+    val month: Int,
+    val amount: Int,
     val type: BudgetType,
     @Nullable val authorId: Int? = null,
     val name: String?,
