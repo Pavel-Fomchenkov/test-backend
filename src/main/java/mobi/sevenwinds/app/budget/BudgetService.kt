@@ -3,7 +3,6 @@ package mobi.sevenwinds.app.budget
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import mobi.sevenwinds.app.author.AuthorTable
-import org.jetbrains.exposed.sql.Query
 import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -25,7 +24,6 @@ object BudgetService {
     }
 
     suspend fun getYearStats(param: BudgetYearParam): BudgetYearStatsResponse = withContext(Dispatchers.IO) {
-
         transaction {
             val query = if (param.name != null) {
                 val authorIds = AuthorTable
