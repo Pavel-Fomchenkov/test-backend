@@ -10,6 +10,7 @@ import com.papsign.ktor.openapigen.route.path.normal.get
 import com.papsign.ktor.openapigen.route.path.normal.post
 import com.papsign.ktor.openapigen.route.response.respond
 import com.papsign.ktor.openapigen.route.route
+import javax.annotation.Nullable
 
 fun NormalOpenAPIRoute.budget() {
     route("/budget") {
@@ -29,11 +30,13 @@ data class BudgetRecord(
     @Min(1900) val year: Int,
     @Min(1) @Max(12) val month: Int,
     @Min(1) val amount: Int,
-    val type: BudgetType
+    val type: BudgetType,
+    @Nullable val authorId: Int? = null
 )
 
 data class BudgetYearParam(
     @PathParam("Год") val year: Int,
+    @QueryParam("Имя") val name: String?,
     @QueryParam("Лимит пагинации") val limit: Int,
     @QueryParam("Смещение пагинации") val offset: Int,
 )
@@ -41,9 +44,18 @@ data class BudgetYearParam(
 class BudgetYearStatsResponse(
     val total: Int,
     val totalByType: Map<String, Int>,
-    val items: List<BudgetRecord>
+    val items: List<BudgetStatsRecord>
 )
 
+data class BudgetStatsRecord(
+    val year: Int,
+    val month: Int,
+    val amount: Int,
+    val type: BudgetType,
+    @Nullable val authorId: Int? = null,
+    val name: String?,
+    val entryDate: String?
+)
 enum class BudgetType {
     Приход, Расход, Комиссия
 }
